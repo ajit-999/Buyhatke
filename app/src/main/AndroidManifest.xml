@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UserProfile"></activity>
+        <activity android:name=".activity.UserProfile"
+            ></activity>
     </application>
 
 </manifest>

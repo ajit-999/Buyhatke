@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 getUserDetails(loginResult);
             }
-
             @Override
             public void onCancel() {
 
