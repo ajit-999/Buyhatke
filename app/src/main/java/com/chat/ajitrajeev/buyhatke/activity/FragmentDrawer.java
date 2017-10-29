@@ -10,19 +10,26 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chat.ajitrajeev.buyhatke.R;
 import com.chat.ajitrajeev.buyhatke.adapter.NavigationDrawerAdapter;
 import com.chat.ajitrajeev.buyhatke.model.NavDrawerItem;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FragmentDrawer extends Fragment {
 
@@ -35,7 +42,11 @@ public class FragmentDrawer extends Fragment {
     private View containerView;
     private static String[] titles = null;
     private FragmentDrawerListener drawerListener;
-    private ImageView userProfileImage;
+    private CircleImageView userProfileImage;
+    private TextView userName,userEmail;
+    JSONObject response;
+    JSONObject profile_pic_data;
+    JSONObject   profile_pic_url;
 
     public FragmentDrawer() {
 
@@ -72,7 +83,9 @@ public class FragmentDrawer extends Fragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
-        userProfileImage = (ImageView)layout.findViewById(R.id.userProfile);
+        userProfileImage = (CircleImageView)layout.findViewById(R.id.userProfile);
+        userName = (TextView)layout.findViewById(R.id.name);
+        userEmail = (TextView)layout.findViewById(R.id.email);
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -94,9 +107,25 @@ public class FragmentDrawer extends Fragment {
     }
 
 
-    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar,String jsonData,Context ctx) {
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
+        try {
+            response = new JSONObject(jsonData);
+            userEmail.setText(response.get("email").toString());
+            userName.setText(response.get("name").toString());
+            profile_pic_data = new JSONObject(response.get("picture").toString());
+            profile_pic_url = new JSONObject(profile_pic_data.getString("data"));
+            Picasso.with(ctx).load(profile_pic_url.getString("url"))
+                    .into(userProfileImage);
+           userProfileImage.setImageResource(R.drawable.ajay);
+            Log.d("Exception",profile_pic_url.getString("url"));
+            Log.d("Context",ctx.toString());
+
+        } catch(Exception e){
+            e.printStackTrace();
+            Log.d("Exception",e.getMessage());
+        }
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {

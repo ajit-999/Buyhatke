@@ -1,15 +1,16 @@
 package com.chat.ajitrajeev.buyhatke.activity;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,40 +29,32 @@ public class UserProfile extends AppCompatActivity implements FragmentDrawer.Fra
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-
+    NavigationView navigationView;
+    TextView user_name,user_email;
+    ImageView user_picture;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
         String jsondata = intent.getStringExtra("userProfile");
-        Log.w("Jsondata", jsondata);
-        TextView user_name = (TextView) findViewById(R.id.UserName);
-        ImageView user_picture = (ImageView) findViewById(R.id.profilePic);
-        TextView user_email = (TextView) findViewById(R.id.email);
-        try {
-            response = new JSONObject(jsondata);
-            user_email.setText(response.get("email").toString());
-            user_name.setText(response.get("name").toString());
-            profile_pic_data = new JSONObject(response.get("picture").toString());
-            profile_pic_url = new JSONObject(profile_pic_data.getString("data"));
-            Picasso.with(this).load(profile_pic_url.getString("url"))
-                    .into(user_picture);
+       /* View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
+         user_name = (TextView)nav_header.findViewById(R.id.userName);
+         user_picture = (ImageView)nav_header.findViewById(R.id.profilePic);
+         user_email = (TextView)nav_header.findViewById(R.id.email);
 
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+       navigationView.addHeaderView(nav_header); */
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar,jsondata,UserProfile.this);
         drawerFragment.setDrawerListener(this);
+
 
         // display the first navigation drawer view on app launch
         displayView(0);
