@@ -84,6 +84,12 @@ public class UserProfile extends AppCompatActivity implements FragmentDrawer.Fra
             Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
             return true;
         }
+        if(id == R.id.img_carousal){
+            startActivity(new Intent(UserProfile.this,ImageCarousal.class));
+
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

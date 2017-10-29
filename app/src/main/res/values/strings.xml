@@ -10,6 +10,7 @@
     <string name="nav_item_home">Home</string>
     <string name="nav_item_friends">Friends</string>
     <string name="nav_item_notifications">Messages</string>
+    <string name="img_carousal">Image Carousal</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
