@@ -42,7 +42,7 @@ public class Gallery extends AppCompatActivity {
         horizontal_recycler_view= (RecyclerView) findViewById(R.id.image_recycler);
         data = fill_with_data();
         horizontalAdapter=new HorizontalAdapter(data, getApplication());
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(Gallery.this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(Gallery.this, LinearLayoutManager.VERTICAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManager);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
         horizontal_recycler_view.addOnItemTouchListener(

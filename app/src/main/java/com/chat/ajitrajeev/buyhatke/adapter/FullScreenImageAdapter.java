@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +27,12 @@ import java.util.ArrayList;
 public class FullScreenImageAdapter extends PagerAdapter {
 
     private Activity _activity;
-    private ArrayList<String> _imagePaths;
+    private ArrayList<Integer> _imagePaths;
     private LayoutInflater inflater;
 
     // constructor
     public FullScreenImageAdapter(Activity activity,
-                                  ArrayList<String> imagePaths) {
+                                  ArrayList<Integer> imagePaths) {
         this._activity = activity;
         this._imagePaths = imagePaths;
     }
@@ -59,19 +60,16 @@ public class FullScreenImageAdapter extends PagerAdapter {
         imgDisplay = (TouchImageView) viewLayout.findViewById(R.id.imgDisplay);
         btnClose = (Button) viewLayout.findViewById(R.id.btnClose);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
+       BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-      //  Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
-        int id = _activity.getResources().getIdentifier(_imagePaths.get(position), "drawable",
-                _activity.getPackageName());
+      /* Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
+ Bitmap bitmap = BitmapFactory.decodeResource(_activity.getResources(),_activity.getResources().
+                getIdentifier("imag1","drawable",_activity.getCallingPackage()));*/
 
-       /* Bitmap bitmap = BitmapFactory.decodeResource(_activity.getResources(),_activity.getResources().
-                getIdentifier("imag1","drawable",_activity.getCallingPackage()));
-                */
-         Bitmap bitmap = BitmapFactory.decodeResource(_activity.getResources(),
-                 _activity.getResources().getIdentifier(_imagePaths.get(position),"drawable",_activity.getPackageName())
-                );
-        imgDisplay.setImageBitmap(bitmap);
+
+         Bitmap bitmap = BitmapFactory.decodeResource(_activity.getResources(),_imagePaths.get(position) );
+        Log.d("ImagePath",_imagePaths.get(position)+"");
+         imgDisplay.setImageBitmap(bitmap);
 
         // close button click event
         btnClose.setOnClickListener(new View.OnClickListener() {

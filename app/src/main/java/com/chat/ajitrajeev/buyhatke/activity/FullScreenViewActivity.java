@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.chat.ajitrajeev.buyhatke.R;
 import com.chat.ajitrajeev.buyhatke.adapter.FullScreenImageAdapter;
@@ -28,6 +29,7 @@ public class FullScreenViewActivity extends AppCompatActivity{
 
         Intent i = getIntent();
         int position = i.getIntExtra("position", 0);
+        Toast.makeText(FullScreenViewActivity.this,"Full"+position,Toast.LENGTH_LONG).show();
 
         adapter = new FullScreenImageAdapter(FullScreenViewActivity.this,
                 utils.getFilePaths());

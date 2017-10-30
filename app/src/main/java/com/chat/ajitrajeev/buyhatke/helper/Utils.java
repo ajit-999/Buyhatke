@@ -2,6 +2,7 @@ package com.chat.ajitrajeev.buyhatke.helper;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
@@ -29,9 +30,10 @@ public class Utils {
     /*
      * Reading file paths from SDCard
      */
-    public ArrayList<String> getFilePaths() {
+    public ArrayList<Integer> getFilePaths() {
 
-        ArrayList<String> filePaths = new ArrayList<String>();
+        ArrayList<Integer> filePaths = new ArrayList<Integer>();
+
 
       /*  File directory = new File(
                 android.os.Environment.getExternalStorageDirectory()
@@ -77,13 +79,14 @@ public class Utils {
             alert.show();
         }
         */
-        for (int i = 0; i < 27; i++) {
-            filePaths.add("R.drawable.imag"+i);
+        for (int i = 1; i <=27; i++) {
+            filePaths.add(_context.getResources().getIdentifier("imag"+i , "drawable", _context.getPackageName()));
+            Log.d("Path"+i,""+_context.getResources().getIdentifier("imag"+i ,
+                    "drawable", _context.getPackageName()));
+
+
         }
-
-
-
-            return filePaths;
+        return filePaths;
     }
 
     /*

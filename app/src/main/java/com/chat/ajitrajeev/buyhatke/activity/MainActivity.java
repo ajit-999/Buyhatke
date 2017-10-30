@@ -3,6 +3,7 @@ package com.chat.ajitrajeev.buyhatke.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.chat.ajitrajeev.buyhatke.R;
 import com.facebook.CallbackManager;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 getUserDetails(loginResult);
+                Toast.makeText(MainActivity.this,"Successfully login",Toast.LENGTH_LONG).show();
             }
             @Override
             public void onCancel() {
