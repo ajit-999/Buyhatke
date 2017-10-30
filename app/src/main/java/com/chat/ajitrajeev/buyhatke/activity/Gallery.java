@@ -46,16 +46,24 @@ public class Gallery extends AppCompatActivity {
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(Gallery.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManager);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
-
-
+        horizontal_recycler_view.addOnItemTouchListener(
+                new RecyclerItemClickListener(Gallery.this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Toast.makeText(getApplicationContext(),"Position"+position,Toast.LENGTH_LONG).show();
+                    }
+                })
+        );
         mLayoutGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i==R.id.linearlayout){
+                    initListDisplay();
                     Toast.makeText(getApplicationContext(),"Linear Layout Selected",Toast.LENGTH_LONG).show();
                 }
+
                 else {
                     if (i==R.id.gridlayout){
+                        initGridDisplay();
                         Toast.makeText(getApplicationContext(),"Grid Layout Selected",Toast.LENGTH_LONG).show();
                     }
                 }
@@ -85,6 +93,15 @@ public class Gallery extends AppCompatActivity {
         data.add(new Data( R.drawable.imag16, "Image 16"));
         data.add(new Data( R.drawable.imag17, "Image 17"));
         data.add(new Data( R.drawable.imag18, "Image 18"));
+        data.add(new Data( R.drawable.imag19, "Image 19"));
+        data.add(new Data( R.drawable.imag19, "Image 20"));
+        data.add(new Data( R.drawable.imag21, "Image 21"));
+        data.add(new Data( R.drawable.imag22, "Image 22"));
+        data.add(new Data( R.drawable.imag23, "Image 23"));
+        data.add(new Data( R.drawable.imag24, "Image 24"));
+        data.add(new Data( R.drawable.imag25, "Image 25"));
+        data.add(new Data( R.drawable.imag26, "Image 26"));
+        data.add(new Data( R.drawable.imag27, "Image 27"));
 
 
         return data;
