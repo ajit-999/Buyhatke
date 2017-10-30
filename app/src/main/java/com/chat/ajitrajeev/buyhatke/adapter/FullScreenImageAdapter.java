@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -60,7 +61,16 @@ public class FullScreenImageAdapter extends PagerAdapter {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
+      //  Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
+        int id = _activity.getResources().getIdentifier(_imagePaths.get(position), "drawable",
+                _activity.getPackageName());
+
+       /* Bitmap bitmap = BitmapFactory.decodeResource(_activity.getResources(),_activity.getResources().
+                getIdentifier("imag1","drawable",_activity.getCallingPackage()));
+                */
+         Bitmap bitmap = BitmapFactory.decodeResource(_activity.getResources(),
+                 _activity.getResources().getIdentifier(_imagePaths.get(position),"drawable",_activity.getPackageName())
+                );
         imgDisplay.setImageBitmap(bitmap);
 
         // close button click event

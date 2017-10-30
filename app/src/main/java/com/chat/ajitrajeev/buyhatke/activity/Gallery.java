@@ -1,6 +1,7 @@
 package com.chat.ajitrajeev.buyhatke.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -40,19 +41,20 @@ public class Gallery extends AppCompatActivity {
         mLayoutGroup = (RadioGroup)findViewById(R.id.layout_group);
         horizontal_recycler_view= (RecyclerView) findViewById(R.id.image_recycler);
         data = fill_with_data();
-
         horizontalAdapter=new HorizontalAdapter(data, getApplication());
-
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(Gallery.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManager);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
         horizontal_recycler_view.addOnItemTouchListener(
                 new RecyclerItemClickListener(Gallery.this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        Toast.makeText(getApplicationContext(),"Position"+position,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Position" + position, Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(Gallery.this, FullScreenViewActivity.class);
+                        i.putExtra("position", position);
+                        startActivity(i);
                     }
                 })
-        );
+             );
         mLayoutGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

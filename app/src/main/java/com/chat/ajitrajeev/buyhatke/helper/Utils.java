@@ -8,6 +8,8 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.chat.ajitrajeev.buyhatke.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -28,9 +30,10 @@ public class Utils {
      * Reading file paths from SDCard
      */
     public ArrayList<String> getFilePaths() {
+
         ArrayList<String> filePaths = new ArrayList<String>();
 
-        File directory = new File(
+      /*  File directory = new File(
                 android.os.Environment.getExternalStorageDirectory()
                         + File.separator + AppConstant.PHOTO_ALBUM);
 
@@ -73,8 +76,14 @@ public class Utils {
             alert.setPositiveButton("OK", null);
             alert.show();
         }
+        */
+        for (int i = 0; i < 27; i++) {
+            filePaths.add("R.drawable.imag"+i);
+        }
 
-        return filePaths;
+
+
+            return filePaths;
     }
 
     /*

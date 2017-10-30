@@ -15,7 +15,7 @@ import android.widget.ImageView;
  * Created by ajit on 30/10/17.
  */
 
-public class TouchImageView extends ImageView {
+public class TouchImageView extends android.support.v7.widget.AppCompatImageView {
 
     Matrix matrix;
 
