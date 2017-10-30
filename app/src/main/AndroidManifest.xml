@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UserProfile"></activity>
-        <activity android:name=".activity.ImageCarousal"></activity>
+        <activity android:name=".activity.UserProfile" />
+        <activity android:name=".activity.ImageCarousal" />
+        <activity android:name=".activity.Gallery"></activity>
     </application>
 
 </manifest>

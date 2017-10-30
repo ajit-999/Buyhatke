@@ -89,6 +89,11 @@ public class UserProfile extends AppCompatActivity implements FragmentDrawer.Fra
 
             return true;
         }
+        if(id == R.id.gallery){
+            startActivity(new Intent(UserProfile.this,Gallery.class));
+
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);

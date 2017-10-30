@@ -18,5 +18,10 @@
         android:title="@string/img_carousal"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/gallery"
+        android:title="Gallery"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 
 </menu>
