@@ -24,7 +24,10 @@
         </activity>
         <activity android:name=".activity.UserProfile" />
         <activity android:name=".activity.ImageCarousal" />
-        <activity android:name=".activity.Gallery"></activity>
+        <activity android:name=".activity.Gallery"
+         android:theme="@android:style/Theme.Holo.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
